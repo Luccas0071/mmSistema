@@ -1,0 +1,85 @@
+<script language="JavaScript">
+    jQuery.noConflict();
+
+    function incluir() {
+        window.location = "index.php?do=curso&action=editar&acao=I";
+    }
+
+    function exibir(codigo) {
+        window.location = "index.php?do=curso&action=editar&acao=E&codigo="+codigo;
+    }
+
+    function alterar(codigo) {
+        window.location = "index.php?do=curso&action=editar&acao=A&codigo="+codigo;
+    }
+
+    function excluir(codigo) {
+        window.location = "index.php?do=curso&action=editar&acao=D&codigo="+codigo;
+    }
+
+</script>
+
+<div class="container">
+    <div class="row align-items-start">
+      <div class="col-11">
+          <div class="padding-padrao">
+              <h1>Curso</h1>
+          </div>
+      </div>
+      <div class="col-1">
+        <div class="padding-padrao">    
+            <button type="button" name="btn-incluir" id="btn-incluir" class="btn btn-primary" onclick="incluir();">
+                <i class="fas fa-plus"></i> INCLUIR
+            </button>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row align-items-start">
+        <div class="col-4">
+            <div class="padding-padrao">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Pesquisar Curso">
+                    <button type="button" name="btn-incluir" id="btn-incluir" class="btn btn-primary" onclick="incluir();">
+                        <i class="fas fa-plus"></i> Pesquisar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Carga horaria</th>
+            <th scope="col">Emissor</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+            {foreach item=$objCurso from=$colectionCurso}
+                <tr>
+                    <th>{$objCurso->getCodigo()}</th>
+                    <td>{$objCurso->getNome()}</td>
+                    <td>{$objCurso->getCargaHoraria()} Horas</td>
+                    <td>{$objCurso->getEmissor()}</td>
+                    <td>
+                        <button type="button" title="Exibir" class="btn btn-primary btn-sm" onclick="javascript: exibir('{$objCurso->getCodigo()}');">
+                            <span class="material-icons">search</span>
+                        </button>
+                        <button type="button" title="Alterar" class="btn btn-warning btn-sm" onclick="javascript: alterar('{$objCurso->getCodigo()}')">
+                            <span class="material-icons">edit</span>
+                        </button>
+                        <button type="button" title="excluir" class="btn btn-danger btn-sm" onclick="javascript: excluir('{$objCurso->getCodigo()}')">
+                            <span class="material-icons">delete_outline</span>
+                        </button>
+                    </td>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>

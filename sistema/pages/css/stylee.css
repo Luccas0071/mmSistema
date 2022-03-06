@@ -1,0 +1,117 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu{
+    position: relative;
+    background: #23232e;
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu li{
+    display: inline-block;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+    display: block;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.menu li a:hover{
+    opacity: 1.0;
+    color: white;
+    font-size: 16px;
+}
+
+.menu li:hover{
+    background: #23232e;
+}
+
+.menu ul{
+    position: absolute;
+    min-width: 200px;
+    display: none;
+    background: #23232e;
+}
+
+.menu ul li{
+    display: block;
+    background: #23232e;
+}
+
+.menu li:hover ul{
+    display: block;
+}
+
+.blog-footer {
+    height: 8vh;
+    background: rgb(35, 87, 117); 
+}
+
+.centro-body{
+    height: 74vh;
+    width: 100%;
+}
+
+footer{
+    text-align: center;
+    padding: 5px;
+    color: #fff;
+}
+
+.padding-padrao{
+    /* superior | direita | inferior | esquerda */
+    padding: 20px 0px 0px 0px;
+}
+
+h1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:23px;
+	color:#5d5d5e;
+	text-align:left;
+    margin-top: 10px;
+}
+
+h2{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	color:#828285;
+	text-align:left;
+    margin-top: 10px;
+}
+
+.aba-escolha{
+    position: relative;
+    background: #23232e;
+    margin: 0px;
+    padding: 0px;
+}
+
+.aba-escolha li{
+    display: inline-block;
+}
+
+.aba-escolha li a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: block;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.aba-escolha li a:hover{
+    opacity: 1.0;
+    color: white;
+    font-size: 16px;
+}
+
+.aba-escolha li:hover{
+    background: #9696a1;
+}

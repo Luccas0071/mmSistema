@@ -1,0 +1,67 @@
+<div id="itemCursosBase-base" style="display: none;">
+    <div class="itemCursosBase-i" id="itemCursosBase-sequencia-">
+        <div class="row">
+            <div class="col-1" style="display: none;">
+                <div class="padding-padrao">
+                    <input type="hidden" class="indice" name="indice-i-" id="indece-i-">
+                    <input type="hidden" class="codigoItemCurso" name="codigoItemCurso-i-" id="codigoItemCurso-i-">
+                    <input type="hidden" class="sequenciaNegocio" name="sequencia-i-" id="sequencia-i-">
+                </div>
+            </div>
+
+            <div id="curso">
+                <div class="row align-items-start">
+                    <div class="col-3">
+                        <div class="padding-padrao">
+                            <label for="curso" title="Curso" class="text-ellipsis">Curso:</label>
+                            <select name="curso-i-" id="curso-i-" class="curso form-select form-select-sm">
+                                <option value="" selected>Selecione</option>
+                                {foreach item=objCurso from=$collectionCurso}
+                                    {if $objCurso->getCodigo()}
+                                        <option value="{$objCurso->getCodigo()}" selected>{$objCurso->getDescricao()}</option>
+                                    {else}											
+                                        <option value="{$objCurso->getCodigo()}">{$objCurso->getDescricao()}</option>
+                                    {/if} 
+                                {/foreach} 
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <div class="padding-padrao">
+                            <label for="dataConclusao" title="Data Conclusão" class="text-ellipsis">Data Conclusão:</label>
+                            <input type="date" name="dataConclusao-i-" id="dataConclusao-i-" class="dataConclusao form-control form-control-sm" value="" >
+                        </div>
+                    </div>
+    
+                    <div class="col-2">
+                        <div class="padding-padrao">
+                            <label for="valor" title="Valor Remuneração" class="text-ellipsis">Remuneração:</label>
+                            <input type="text" name="valor-i-" id="valor-i-" class="valor form-control form-control-sm" value="" >
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="padding-padrao">
+                            <label for="observacao" title="Observação" class="text-ellipsis">Observação:</label>
+                            <input type="text" name="observacao-i-" id="observacao-i-" class="valor form-control form-control-sm" value="" >
+                        </div>
+                    </div>
+
+                    <div class="col-1">
+                        <div class="linha">
+                            <div class="col-12"><br>
+                                <div class="padding-padrao">
+                                    <button type="button" title="excluir" class="btn btn-danger btn-sm" onclick="javascript: excluirItemCurso(this)">
+                                        <span class="material-icons">delete_outline</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

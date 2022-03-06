@@ -1,0 +1,110 @@
+<script language="JavaScript">
+    jQuery.noConflict();
+
+    function voltar() {
+        window.location = "index.php?do=curso&action=inicio";
+    }
+
+    function salvar() {
+
+        
+		var acao = jQuery("#acao").val();
+
+		if (acao == "A") {
+			var urlAction = "index.php?do=curso&action=alterar";
+		}
+
+		if (acao == "I") {
+			var urlAction = "index.php?do=curso&action=incluir";
+		}
+
+		formDados = new FormData(document.getElementById('frmCurso'));
+
+		jQuery.ajax({
+			type: 'POST',
+			url: urlAction,
+			data: formDados,
+			success: function (data) {
+				console.log(data);
+                redirecionar();
+			},
+			cache: false,
+			contentType: false,
+			processData: false
+		});
+	}
+
+    function redirecionar() {
+        window.location = "index.php?do=curso&action=inicio&sucesso";
+    }
+
+</script>
+
+<div class="container">
+        <div class="row">
+            <div class="col-10">
+                <div class="padding-padrao">
+                    {if $objCursoForm->getAcao() == "A"}
+                        <h1>Alterar Curso</h1>
+					{else} 
+                        <h1>Cadastro de Curso</h1>
+					{/if}
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="padding-padrao">    
+                    <button type="button" name="btn-incluir" id="btn-incluir" class="btn btn-primary" onclick="salvar();">
+                        <i class="fas fa-plus"></i> SALVAR
+                    </button>
+
+                    <button type="button" name="btn-voltar" id="btn-voltar" class="btn btn-primary" onclick="voltar();">
+                        <i class="fas fa-plus"></i> VOLTAR
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        
+        <!-- Curso -->
+        <div id="curso">
+            <div class="row align-items-start">
+                <div class="col-12">
+                    <div class="padding-padrao">
+                        <h2><span class="material-icons">menu_book</span> Alterar Curso</h2>
+                    </div>
+                    <p class="font-weight-light">Preencha os campos abaixo para cadastrar um novo Curso !</p>	
+                </div>  
+            </div>
+            
+        <form name="frmCurso" id="frmCurso" method="POST">
+            <input type="hidden" name="acao" 					id="acao" 					value="{$objCursoForm->getAcao()}">
+			<input type="hidden" name="codigoCurso" 			id="codigoCurso" 			value="{$objCursoForm->getCodigo()}">
+        
+            <div class="row align-items-start">
+                <div class="col-4">
+                    <div class="padding-padrao">
+                        <label for="nome" title="Nome" class="text-ellipsis">Nome:</label>
+                        <input type="text" name="nome" id="nome" class="nome form-control form-control-sm" value="{$objCursoForm->getNome()}" >
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="padding-padrao">
+                        <label for="cargaHoraria" title="Carga Horaria" class="text-ellipsis">Carga horaria:</label>
+                        <input type="text" name="cargaHoraria" id="cargaHoraria" class="cargaHoraria form-control form-control-sm" value="{$objCursoForm->getCargaHoraria()}" >
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="padding-padrao">
+                        <label for="emissor" title="Emissor" class="text-ellipsis">Emissor:</label>
+                        <input type="text" name="emissor" id="emissor" class="emissor form-control form-control-sm" value="{$objCursoForm->getEmissor()}" >
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </form>
+    <br>
+</div>
