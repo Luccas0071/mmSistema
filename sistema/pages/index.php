@@ -1,11 +1,11 @@
 <?php
-include_once 'configs/config.php';
-include_once '../classes/action/cursoAction.php';
-include_once '../classes/action/colaboradorAction.php';
+include_once 'configs/Config.php';
+include_once '../classes/action/CursoAction.php';
+include_once '../classes/action/ColaboradorAction.php';
+include_once '../classes/action/MainAction.php';
 
 
-$smarty->display('include/header.html');
-$smarty->display('include/menu.html');
+    MainAction::header();
 
     $do = $_GET['do'];
     $action = $_GET['action'];
@@ -38,6 +38,10 @@ $smarty->display('include/menu.html');
         if($action == "excluir"){
             $colaboradorAction->excluir($_POST);
         } 
+
+        if($action == "listarItemColaborador"){
+            $colaboradorAction->listarItemColaborador($_GET);
+        }
     } 
     
     /* 
@@ -74,6 +78,6 @@ $smarty->display('include/menu.html');
     } 
 
 
-$smarty->display('include/footer.html');
+    MainAction::footer();
 
 

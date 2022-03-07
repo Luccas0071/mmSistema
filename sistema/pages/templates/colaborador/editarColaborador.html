@@ -24,7 +24,7 @@
 			success: function (data) {
 				console.log(data);
 
-				//redirecionar();
+				redirecionar();
 			},
 			cache: false,
 			contentType: false,
@@ -33,7 +33,7 @@
 	}
 
     function redirecionar() {
-        window.location = "index.php?do=curso&action=inicio";
+        window.location = "index.php?do=colaborador&action=inicio";
         alert ("Colaborador Incluido com Sucesso !");
     }
 
@@ -45,6 +45,50 @@
 		e.append(base);
 		indice++;
 	}
+
+    function listarItemColaborador() {
+        let codigoColaborador = jQuery("#codigoColaborador").val();
+
+        if(codigoColaborador != "") {
+            jQuery.ajax({
+                type: 'GET',
+                url: 'index.php?do=colaborador&action=listarItemColaborador',
+                data: {
+                    'codigoColaborador': codigoColaborador
+                },
+                success: function(data) {
+                    console.log(data);
+                    
+                    // let arrayItemColaborador = JSON.parse(data);
+                    // console.log(arrayItemColaborador);
+                    // processaItemColaborador();
+                    // console.log("bbbbb"); 
+                }
+            });
+        }
+    }
+
+	function processaItemColaborador(arrayItemColaborador =  ''){
+        console.log("Entrou aq ");
+        var acao = jQuery("#acao").val();
+        console.log(arrayItemColaborador);
+
+        arrayItemColaborador.forEach((itemColaborador) => {
+            var e = jQuery("#editarItemCurso");
+            var base = jQuery("#itemCursosBase-base").html();
+            base = base.replace(/\-i\-/g, indice);
+            base = base.replace(/\-sequencia\-/g, indice);
+            e.append(base);
+
+			// jQuery("#itemCursosBase" + indice).find(".codigoItemCurso").val(itemNegocio['codigoItemNegocio']); 
+			// jQuery("#itemCursosBase" + indice).find(".curso").val(itemNegocio['patrimonio']);				
+			// jQuery("#itemCursosBase" + indice).find(".dataConclusao").val(itemNegocio['projeto']);						
+			// jQuery("#itemCursosBase" + indice).find(".valor").val(itemNegocio['composicao']);				
+			// jQuery("#itemCursosBase" + indice).find(".observacao").val(itemNegocio['descricao']);  				
+		
+            indice++;
+        });
+    }
 
     function excluirItemCurso(element) {
         console.log(element);
@@ -86,7 +130,12 @@
     <div class="row">
         <div class="col-10">
             <div class="padding-padrao">
-                <h1>Incluir Colaborador</h1>
+                {if $objColaboradorForm->getAcao() == "A"}
+                        <h1>Alterar Colaborador</h1>
+					{else} 
+                        <h1>Incluir Colaborador</h1>
+					{/if}
+                
             </div>
         </div>
 
@@ -298,3 +347,7 @@
     {include file="colaborador/item/itemCursosBase.html"}
     <br>
 </div>
+
+<script>		
+	listarItemColaborador();
+</script> 

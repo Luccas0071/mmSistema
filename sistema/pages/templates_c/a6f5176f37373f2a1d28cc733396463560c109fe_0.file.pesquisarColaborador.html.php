@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-03-05 15:17:34
+/* Smarty version 4.0.0, created on 2022-03-06 17:57:33
   from 'C:\xampp atualizado\htdocs\mmSistema\sistema\pages\templates\colaborador\pesquisarColaborador.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_622370feb96579_22920579',
+  'unifunc' => 'content_6224e7fd6e7d74_45955682',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6f5176f37373f2a1d28cc733396463560c109fe' => 
     array (
       0 => 'C:\\xampp atualizado\\htdocs\\mmSistema\\sistema\\pages\\templates\\colaborador\\pesquisarColaborador.html',
-      1 => 1646489852,
+      1 => 1646585847,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_622370feb96579_22920579 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6224e7fd6e7d74_45955682 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  language="JavaScript">
     jQuery.noConflict();
 
     function incluir() {
         window.location = "index.php?do=colaborador&action=editar&acao=I";
+    }
+
+    function exibir(codigo) {
+        window.location = "index.php?do=colaborador&action=editar&acao=E&codigo="+codigo;
+    }
+
+    function alterar(codigo) {
+        window.location = "index.php?do=colaborador&action=editar&acao=A&codigo="+codigo;
+    }
+
+    function excluir(codigo) {
+        window.location = "index.php?do=colaborador&action=editar&acao=D&codigo="+codigo;
     }
 
 <?php echo '</script'; ?>

@@ -18,9 +18,9 @@
                                 <option value="" selected>Selecione</option>
                                 {foreach item=objCurso from=$collectionCurso}
                                     {if $objCurso->getCodigo()}
-                                        <option value="{$objCurso->getCodigo()}" selected>{$objCurso->getDescricao()}</option>
+                                        <option value="{$objCurso->getCodigo()}" selected>{$objCurso->getNome()}</option>
                                     {else}											
-                                        <option value="{$objCurso->getCodigo()}">{$objCurso->getDescricao()}</option>
+                                        <option value="{$objCurso->getCodigo()}">{$objCurso->getNome()}</option>
                                     {/if} 
                                 {/foreach} 
                             </select>

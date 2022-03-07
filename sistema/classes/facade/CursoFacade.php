@@ -1,5 +1,4 @@
 <?php
-require_once '../database/Connection.php';
 include_once '../classes/dao/CursoDAO.php';
 include_once '../classes/factory/DAOFactory.php';
 
@@ -38,7 +37,7 @@ class CursoFacade{
         try {
             DAOFactory::$connection->pdo->beginTransaction();
             
-            $colectionCurso = $objCursoDAO->incluirCurso($objCurso);
+            $objCursoDAO->incluirCurso($objCurso);
 
             DAOFactory::$connection->pdo->commit();
 			DAOFactory::$connection->closePDO();
@@ -57,6 +56,7 @@ class CursoFacade{
         $objCursoDAO  = new  CursoDAO();
 
         try {
+            DAOFactory::$connection->pdo->beginTransaction();
 
             $objCurso = $objCursoDAO->obterDadosCurso($get);
 
@@ -78,6 +78,7 @@ class CursoFacade{
         $objCursoDAO  = new  CursoDAO();
 
         try {
+            DAOFactory::$connection->pdo->beginTransaction();
 
             $objCursoDAO->alterarCurso($objCurso);
 
@@ -98,6 +99,7 @@ class CursoFacade{
         $objCursoDAO  = new  CursoDAO();
 
         try {
+            DAOFactory::$connection->pdo->beginTransaction();
 
             $objCursoDAO->excluirCurso($objCurso);
 

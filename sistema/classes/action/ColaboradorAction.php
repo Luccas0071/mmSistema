@@ -1,46 +1,51 @@
 <?php
 include_once '../classes/form/colaboradorForm.php';
+include_once '../classes/facade/colaboradorFacade.php';
+include_once '../classes/model/Colaborador.php';
 include_once '../classes/dao/colaboradorDAO.php';
-include_once 'configs/config.php';
 include_once '../pages/configs/config.php';
-include_once '../classes/form/cursoForm.php';
-include_once '../classes/facade/ColaboradorFacade.php';
-
 class ColaboradorAction{
 
     public function inicio(){
 
-        $objColaboradorDAO  = new ColaboradorDAO();
-        $smarty             = new Smarty();
+        $objColaboradorFacade   = new ColaboradorFacade();
+        $smarty                 = new Smarty();
 
-        $colectionColaborador = $objColaboradorDAO->listarColaborador();
-        $smarty->assign("colectionColaborador", $colectionColaborador);
+        try {
+            
+            $colectionColaborador = $objColaboradorFacade->listarColaborador();
+            $smarty->assign("colectionColaborador", $colectionColaborador);
+
+        } catch (Exception $e) {
+            throw new Exception("ColaboradorAction->inicio " . $e);
+        }
+        
 
         $smarty->display('templates/colaborador/pesquisarColaborador.html');
 	}
 
     public function editar($get){
-        $objColaboradorForm   = new ColaboradorForm();
-        $objColaboradorDAO    = new ColaboradorDAO();
-        $objCursoDAO          = new CursoDAO();
-        $smarty               = new Smarty();
+        $objColaboradorForm     = new ColaboradorForm();
+        $objColaboradorFacade   = new ColaboradorFacade();
+        $objCursoFacade         = new CursoFacade();
+        $smarty                 = new Smarty();
 
         $acao = $get['acao'];
 
-        /* if($acao != "I"){
-            $objColaborador = $objColaboradorDAO->obterDadosColaborador($get);
-            $objCursoForm->transfereModelForm($objCurso);
-        } */
+        if($acao != "I"){
+            $objColaborador = $objColaboradorFacade->obterDadosColaborador($get);
+            $objColaboradorForm->transfereModelForm($objColaborador);
+        }
 
         $objColaboradorForm->setAcao($acao);
         $smarty->assign("objColaboradorForm", $objColaboradorForm);
 
         //Busca Tipo de Cargo
-        $collectionCargo = $objColaboradorDAO->listarItemTabelaBasica('1');
+        $collectionCargo = $objColaboradorFacade->listarItemTabelaBasica('1');
         $smarty->assign("collectionCargo", $collectionCargo);
 
         //Busca Cursos
-        $collectionCurso = $objCursoDAO->listarCurso();
+        $collectionCurso = $objCursoFacade->listarCurso();
         $smarty->assign("collectionCurso", $collectionCurso);
 
         if($acao == "I" || $acao == "A"){
@@ -69,6 +74,22 @@ class ColaboradorAction{
 
     public function excluir(){
 	
+	}
+
+    public function listarItemColaborador($get){
+        $objColaboradorFacade = new ColaboradorFacade();
+        $objItemColaboradorCurso = new ItemColaboradorCurso();
+
+        $codigoColaborador = $get['codigoColaborador'];
+      
+        try {
+            $collectionItemColaborador = $objColaboradorFacade->listarItemColaborador($codigoColaborador);
+            $arrayItemColaborador = $objItemColaboradorCurso->transfereCollectionItemColaboradorArray($collectionItemColaborador);
+        } catch (Exception $e) {
+            //throw $th;
+        }
+
+        echo json_encode($arrayItemColaborador);
 	}
 
 

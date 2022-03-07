@@ -66,4 +66,20 @@ class ItemColaboradorCurso{
 
         return $this;
     }
+
+    public function transfereCollectionItemColaboradorArray($collectionItemColaborador)
+    {
+        $arrayItemColaborador = array();
+        $indice = 0;
+        foreach ($collectionItemColaborador as $objItemColaborador) {
+            $arrayItemColaborador[$indice]['codigoItemColaborador']   = $objItemColaborador->getCodigo();
+            $arrayItemColaborador[$indice]['codigoCurso']             = $objItemColaborador->getObjCurso()->getCodigo();
+            $arrayItemColaborador[$indice]['dataConclusao']           = $objItemColaborador->getDataConclusao();
+            $arrayItemColaborador[$indice]['valorRemuneracao']        = $objItemColaborador->getValorRemuneracao();
+            $arrayItemColaborador[$indice]['observacao']              = $objItemColaborador->getObservacao();
+ 
+            $indice++;
+        }
+        return $arrayItemColaborador;
+    }
 }

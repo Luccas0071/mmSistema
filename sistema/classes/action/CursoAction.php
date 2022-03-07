@@ -1,8 +1,8 @@
 <?php
-include_once '../classes/form/cursoForm.php';
-include_once '../classes/model/curso.php';
+include_once '../classes/form/CursoForm.php';
+include_once '../classes/model/Curso.php';
 include_once '../classes/dao/CursoDAO.php';
-include_once '../pages/configs/config.php';
+include_once '../pages/configs/Config.php';
  
 
 class CursoAction{
@@ -12,8 +12,13 @@ class CursoAction{
         $objCursoFacade   = new CursoFacade();
         $smarty             = new Smarty();
 
-        $colectionCurso = $objCursoFacade->listarCurso();
-        $smarty->assign("colectionCurso", $colectionCurso);
+        try {
+            $colectionCurso = $objCursoFacade->listarCurso();
+            $smarty->assign("colectionCurso", $colectionCurso);
+
+        } catch (Exception $e) {
+            echo $e;
+        }
 
         $smarty->display('templates/curso/pesquisarCurso.html');
     }

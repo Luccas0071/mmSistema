@@ -288,10 +288,6 @@ class ColaboradorForm {
 
     public function transfereRequestForm($request){
 
-        print_r("FORM");
-        print_r($request);
-        exit;
-
         $this->setAcao($request['acao']);
         $this->setCodigo($request['codigoCurso']);
         $this->setNome($request['nome']);
@@ -377,6 +373,34 @@ class ColaboradorForm {
         $objColaborador->setCollectionItemCurso($this->getCollectionItemCurso());
 
         return $objColaborador;
+    }
+
+    public function transfereModelForm($objColaborador){
+
+        $this->setAcao($objColaborador->getAcao());
+        $this->setCodigo($objColaborador->getCodigo());
+        $this->setNome($objColaborador->getNome());
+        $this->setCpf($objColaborador->getCpf());
+        $this->setRg($objColaborador->getRg());
+        $this->setDataNascimento($objColaborador->getDataNascimento());
+        $this->setDddTelefone($objColaborador->getDddTelefone());
+        $this->setTelefone($objColaborador->getTelefone());
+        $this->setDddCelular($objColaborador->getDddCelular());
+        $this->setCelular($objColaborador->getCelular());
+        $this->setCargo($objColaborador->getObjCargo()->getCodigo());
+        $this->setEmail($objColaborador->getEmail());
+        $this->setSalario($objColaborador->getSalario());
+
+        $this->setCep($objColaborador->getObjEndereco()->getCep());
+        $this->setRua($objColaborador->getObjEndereco()->getRua());
+        $this->setNumero($objColaborador->getObjEndereco()->getNumero());
+        $this->setBairro($objColaborador->getObjEndereco()->getBairro());
+        $this->setComplemento($objColaborador->getObjEndereco()->getComplemento());
+        $this->setUf($objColaborador->getObjEndereco()->getUf());
+        $this->setMunicipio($objColaborador->getObjEndereco()->getMunicipio());
+
+
+        return $this;
     }
 
    

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-03-05 18:41:17
+/* Smarty version 4.0.0, created on 2022-03-06 17:07:28
   from 'C:\xampp atualizado\htdocs\mmSistema\sistema\pages\templates\colaborador\item\itemCursosBase.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_6223a0bd65f083_23135492',
+  'unifunc' => 'content_6224dc40de8520_98295522',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '066737f987d05c038af7380ba36a20497451ed22' => 
     array (
       0 => 'C:\\xampp atualizado\\htdocs\\mmSistema\\sistema\\pages\\templates\\colaborador\\item\\itemCursosBase.html',
-      1 => 1646498987,
+      1 => 1646582846,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6223a0bd65f083_23135492 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6224dc40de8520_98295522 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div id="itemCursosBase-base" style="display: none;">
     <div class="itemCursosBase-i" id="itemCursosBase-sequencia-">
         <div class="row">
@@ -40,18 +40,18 @@ function content_6223a0bd65f083_23135492 (Smarty_Internal_Template $_smarty_tpl)
                             <select name="curso-i-" id="curso-i-" class="curso form-select form-select-sm">
                                 <option value="" selected>Selecione</option>
                                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['collectionCargo']->value, 'objCargo');
-$_smarty_tpl->tpl_vars['objCargo']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objCargo']->value) {
-$_smarty_tpl->tpl_vars['objCargo']->do_else = false;
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['collectionCurso']->value, 'objCurso');
+$_smarty_tpl->tpl_vars['objCurso']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objCurso']->value) {
+$_smarty_tpl->tpl_vars['objCurso']->do_else = false;
 ?>
-                                    <?php if ($_smarty_tpl->tpl_vars['objCargo']->value->getCodigo()) {?>
-                                        <option value="<?php echo $_smarty_tpl->tpl_vars['objCargo']->value->getCodigo();?>
-" selected><?php echo $_smarty_tpl->tpl_vars['objCargo']->value->getDescricao();?>
+                                    <?php if ($_smarty_tpl->tpl_vars['objCurso']->value->getCodigo()) {?>
+                                        <option value="<?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getCodigo();?>
+" selected><?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getNome();?>
 </option>
                                     <?php } else { ?>											
-                                        <option value="<?php echo $_smarty_tpl->tpl_vars['objCargo']->value->getCodigo();?>
-"><?php echo $_smarty_tpl->tpl_vars['objCargo']->value->getDescricao();?>
+                                        <option value="<?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getCodigo();?>
+"><?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getNome();?>
 </option>
                                     <?php }?> 
                                 <?php

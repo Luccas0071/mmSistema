@@ -1,12 +1,13 @@
 <?php
+include_once '../classes/factory/DAOFactory.php';
+include_once '../classes/facade/ColaboradorFacade.php';
+include_once '../classes/form/ColaboradorForm.php';
+include_once '../classes/model/Colaborador.php';
 
-
-class ColaboradorDAO {
+class ColaboradorDAO extends DAOFactory{
 
 	public function listarItemTabelaBasica($codigo){
 
-        require_once "../database/connectDatabase.php";
-	
         $colectionCargo = array();
 
 		$sql = " SELECT ";
@@ -17,7 +18,7 @@ class ColaboradorDAO {
 		$sql .= " WHERE tab_tipo = :codigoTipo ";
 		$sql .= " ORDER BY tab_ordem ";
 
-        $query = $pdo->prepare($sql);
+        $query = parent::$connection->pdo->prepare($sql);
 
 		$query->bindParam(':codigoTipo', $codigo, PDO::PARAM_INT);
 
@@ -36,13 +37,10 @@ class ColaboradorDAO {
 			$collectionErro = $query->errorInfo();
 			throw new Exception("TabelaBasicaDAO->listaTabelaBasica " . $collectionErro[2]);
 		}
-		unset($query);
 		return $colectionCargo;
     }
 
 	public function listarColaborador(){
-
-		require_once "../database/connectDatabase.php";
         
         $colectionColaborador = array();
 
@@ -58,7 +56,7 @@ class ColaboradorDAO {
 		$sql .= " 	ON fun.tb_tipo_funcionario = tab.tab_codigo ";
 		$sql .= " ORDER BY fun_codigo ";
 
-        $query = $pdo->prepare($sql);
+        $query = parent::$connection->pdo->prepare($sql);
 
 		if ($query->execute()) {
 			while ($rs = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -77,67 +75,85 @@ class ColaboradorDAO {
 			$collectionErro = $query->errorInfo();
 			throw new Exception("ColaboradorDAO->listaColaborador " . $collectionErro[2]);
 		}
-		unset($query);
 		return $colectionColaborador;
     }
 
 	public function obterDadosColaborador($get){
 
-		require_once "../database/connectDatabase.php";
+		$acao = $get['acao'];
+        $codigo = $get['codigo'];
         
         $colectionColaborador = array();
 
 		$sql = " SELECT ";
-		$sql .= " 	fun.fun_codigo, ";
-		$sql .= " 	fun.fun_nome, ";
-		$sql .= " 	fun.fun_cpf, ";
-		$sql .= " 	fun.fun_rg, ";
-		$sql .= " 	fun.fun_data_nascimento, ";
-		$sql .= " 	fun.fun_ddd_telefone, ";
-		$sql .= " 	fun.fun_telefone, ";
-		$sql .= " 	fun.fun_ddd_celular, ";
-		$sql .= " 	fun.fun_celular, ";
-		$sql .= " 	fun.fun_email, ";
-		$sql .= " 	fun.fun_salario, ";
-		$sql .= " 	fun.fun_cep, ";
-		$sql .= " 	fun.fun_rua, ";
-		$sql .= " 	fun.fun_numero, ";
-		$sql .= " 	fun.fun_bairro, ";
-		$sql .= " 	fun.fun_complemento, ";
-		$sql .= " 	fun.fun_uf, ";
-		$sql .= " 	fun.fun_municipio ";
-		$sql .= " 	tab.tab_descricao ";
-		$sql .= " FROM mm_tech.tb_funcionario as fun ";
-		$sql .= " INNER JOIN mm_tech.tb_tabela_basica as tab ";
-		$sql .= " 	ON fun.tb_tipo_funcionario = tab.tab_codigo ";
+		$sql .= " 	fun_codigo, ";
+		$sql .= " 	fun_nome, ";
+		$sql .= " 	fun_cpf, ";
+		$sql .= " 	fun_rg, ";
+		$sql .= " 	fun_data_nascimento, ";
+		$sql .= " 	fun_ddd_telefone, ";
+		$sql .= " 	fun_telefone, ";
+		$sql .= " 	fun_ddd_celular, ";
+		$sql .= " 	fun_celular, ";
+		$sql .= " 	fun_email, ";
+		$sql .= " 	fun_salario, ";
+		$sql .= " 	fun_cep, ";
+		$sql .= " 	fun_rua, ";
+		$sql .= " 	fun_numero, ";
+		$sql .= " 	fun_bairro, ";
+		$sql .= " 	fun_complemento, ";
+		$sql .= " 	fun_uf, ";
+		$sql .= " 	fun_municipio, ";
+		$sql .= " 	tb_tipo_funcionario ";
+		$sql .= " FROM mm_tech.tb_funcionario ";
+		$sql .= " WHERE fun_codigo = :codigo ";
 		$sql .= " ORDER BY fun_codigo ";
 
-        $query = $pdo->prepare($sql);
+        $query = parent::$connection->pdo->prepare($sql);
+
+		$query->bindParam(':codigo', $codigo, PDO::PARAM_INT);
 
 		if ($query->execute()) {
 			while ($rs = $query->fetch(PDO::FETCH_ASSOC)) {
 
 				$objColaborador = new Colaborador();
 
+				$objColaborador->setAcao($acao);
 				$objColaborador->setCodigo($rs['fun_codigo']);
 				$objColaborador->setNome($rs['fun_nome']);
+				$objColaborador->setCpf($rs['fun_cpf']);
+				$objColaborador->setRg($rs['fun_rg']);
+				$objColaborador->setDataNascimento($rs['fun_data_nascimento']);
+				$objColaborador->setDddTelefone($rs['fun_ddd_telefone']);
+				$objColaborador->setTelefone($rs['fun_telefone']);
 				$objColaborador->setDddCelular($rs['fun_ddd_celular']);
 				$objColaborador->setCelular($rs['fun_celular']);
-				$objColaborador->setObjCargo($rs['tab_descricao']);
 
-				array_push($colectionColaborador, $objColaborador);
+				$objColaborador->setObjCargo(new TabelaBasica());
+				$objColaborador->getObjCargo()->setCodigo($rs['tb_tipo_funcionario']);
+
+				$objColaborador->setEmail($rs['fun_email']);
+				$objColaborador->setSalario($rs['fun_salario']);
+				
+				$objColaborador->setObjEndereco(new Endereco());
+				$objColaborador->getObjEndereco()->setCep($rs['fun_cep']);
+				$objColaborador->getObjEndereco()->setRua($rs['fun_rua']);
+				$objColaborador->getObjEndereco()->setNumero($rs['fun_numero']);
+				$objColaborador->getObjEndereco()->setBairro($rs['fun_bairro']);
+				$objColaborador->getObjEndereco()->setComplemento($rs['fun_complemento']);
+				$objColaborador->getObjEndereco()->setUf($rs['fun_uf']);
+				$objColaborador->getObjEndereco()->setMunicipio($rs['fun_municipio']);
+
 			}
 		} else {
 			$collectionErro = $query->errorInfo();
-			throw new Exception("ColaboradorDAO->listaColaborador " . $collectionErro[2]);
+			throw new Exception("ColaboradorDAO->obterDadosColaborador " . $collectionErro[2]);
 		}
-		unset($query);
-		return $colectionColaborador;
+
+		return $objColaborador;
     }
 
 	public function incluirColaborador($objColaborador){
-
-		require_once "../database/connectDatabase.php";
 
 		$sql = " INSERT INTO mm_tech.tb_funcionario ";
 		$sql .= " ( ";
@@ -182,7 +198,7 @@ class ColaboradorDAO {
 		$sql .= " RETURNING ";
 		$sql .= "	fun_codigo ";
 
-		$query = $pdo->prepare($sql);
+		$query = parent::$connection->pdo->prepare($sql);
 
 		$query->bindParam(':nome', 				$objColaborador->getNome(), 		    PDO::PARAM_STR);
 		$query->bindParam(':cpf', 			 	$objColaborador->getCpf(), 				PDO::PARAM_STR);
@@ -206,7 +222,6 @@ class ColaboradorDAO {
 		if ($query->execute()) {
 			$rs = $query->fetch(PDO::FETCH_ASSOC);
 			return $rs['fun_codigo'];
-			unset($query);
 		} else {
 			$collectionErro = $query->errorInfo();
 			throw new Exception("ColaboradorDAO->incluirColaborador " . $collectionErro[2]);
@@ -215,15 +230,13 @@ class ColaboradorDAO {
 
 	public function incluirItemCurso($objItemCurso, $codigoColaborador){
 
-		require_once "../database/connectDatabase.php";
-
 		$sql = " INSERT INTO mm_tech.tb_item_colaborador_curso ";
 		$sql .= " (  ";
 		$sql .= " 	icc_data_conclusao, ";
 		$sql .= " 	icc_remuneracao, ";
 		$sql .= " 	icc_observacao, ";
 		$sql .= " 	cur_codigo, ";
-		$sql .= " 	fur_codigo ";
+		$sql .= " 	fun_codigo ";
 		$sql .= " ) VALUES (  ";
 		$sql .= " 	:dataConclusao, ";
 		$sql .= " 	:remuneracao, ";
@@ -232,7 +245,7 @@ class ColaboradorDAO {
 		$sql .= " 	:codigoFuncionario ";
 		$sql .= " ) ";
 
-		$query = $pdo->prepare($sql);
+		$query = parent::$connection->pdo->prepare($sql);
 
 		$query->bindParam(':dataConclusao', 		$objItemCurso->getDataConclusao(), 			PDO::PARAM_STR);
 		$query->bindParam(':remuneracao', 			$objItemCurso->getValorRemuneracao(),  		PDO::PARAM_STR);
@@ -242,11 +255,50 @@ class ColaboradorDAO {
 
 		if ($query->execute()) {
 			$query->fetch(PDO::FETCH_ASSOC);
-			unset($query);
 		} else {
 			$collectionErro = $query->errorInfo();
 			throw new Exception("ColaboradorDAO->incluirColaborador " . $collectionErro[2]);
 		}
+		
+	}
+
+	public function listarItemColaborador($codigoColaborador){
+
+		$sql = " SELECT ";
+		$sql .= " 	icc_codigo, ";
+		$sql .= " 	icc_data_conclusao, ";
+		$sql .= " 	icc_remuneracao, ";
+		$sql .= " 	icc_observacao, ";
+		$sql .= " 	cur_codigo, ";
+		$sql .= " 	fun_codigo ";
+		$sql .= " FROM mm_tech.tb_item_colaborador_curso ";
+		$sql .= " WHERE fun_codigo = :codigoColaborador ";
+		$sql .= " ORDER BY icc_codigo ";
+
+		$query = parent::$connection->pdo->prepare($sql);
+
+		$query->bindParam(":codigoColaborador", $codigoColaborador, PDO::PARAM_INT);
+
+		$collectionItemColaborador = array();
+		if ($query->execute()) {
+			while ($rs = $query->fetch(PDO::FETCH_ASSOC)) {
+				$objItemColaboradorCurso = new ItemColaboradorCurso();
+
+				$objItemColaboradorCurso->setCodigo($rs['icc_codigo']);
+				$objItemColaboradorCurso->setDataConclusao($rs['icc_data_conclusao']);
+				$objItemColaboradorCurso->setValorRemuneracao($rs['icc_remuneracao']);
+				$objItemColaboradorCurso->setObservacao($rs['icc_observacao']);
+
+				$objItemColaboradorCurso->setObjCurso(new Curso());
+				$objItemColaboradorCurso->getObjCurso()->setCodigo($rs['cur_codigo']);
+
+				array_push($collectionItemColaborador, $objItemColaboradorCurso);
+			}
+		} else {
+			$collectionErro = $query->errorInfo();
+			throw new Exception("ColaboradorDAO->listarItemColaborador" . $collectionErro[2]);
+		}
+		return $collectionItemColaborador;
 		
 	}
 }
