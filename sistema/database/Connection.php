@@ -7,10 +7,10 @@ class Connection{
     public function __construct(){
     
         $endereco = 'localhost';
-        $banco = 'mm_sistema';
+        $banco = 'mm_tecnologia';
         $usuario = 'postgres';
         $senha = 'acesse';
-        //print_r("Aaaaaaaaaaaa");
+
         try {
 
             $this->pdo = new PDO("pgsql:host=$endereco;port=5432;dbname=$banco", $usuario, $senha);

@@ -1,4 +1,28 @@
-<script language="JavaScript">
+<?php
+/* Smarty version 4.0.0, created on 2022-03-13 19:18:30
+  from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\curso\pesquisarCurso.html' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.0.0',
+  'unifunc' => 'content_622e35765178e5_58662200',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '94ce9c3b0e1508ec04350e2e9a2493d8683b300e' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\curso\\pesquisarCurso.html',
+      1 => 1647195460,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_622e35765178e5_58662200 (Smarty_Internal_Template $_smarty_tpl) {
+echo '<script'; ?>
+ language="JavaScript">
     jQuery.noConflict();
 
     function incluir() {
@@ -17,7 +41,8 @@
         window.location = "index.php?do=curso&action=editar&acao=D&codigo="+codigo;
     }
 
-</script>
+<?php echo '</script'; ?>
+>
 
 <div class="container">
     <div class="row align-items-start">
@@ -61,25 +86,41 @@
           </tr>
         </thead>
         <tbody>
-            {foreach item=$objCurso from=$colectionCurso}
+            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['colectionCurso']->value, 'objCurso');
+$_smarty_tpl->tpl_vars['objCurso']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objCurso']->value) {
+$_smarty_tpl->tpl_vars['objCurso']->do_else = false;
+?>
                 <tr>
-                    <th>{$objCurso->getCodigo()}</th>
-                    <td>{$objCurso->getNome()}</td>
-                    <td>{$objCurso->getCargaHoraria()} Horas</td>
-                    <td>{$objCurso->getEmissor()}</td>
+                    <th><?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getCodigo();?>
+</th>
+                    <td><?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getNome();?>
+</td>
+                    <td><?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getCargaHoraria();?>
+ Horas</td>
+                    <td><?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getEmissor();?>
+</td>
                     <td>
-                        <button type="button" title="Exibir" class="btn btn-primary btn-sm" onclick="javascript: exibir('{$objCurso->getCodigo()}');">
+                        <button type="button" title="Exibir" class="btn btn-primary btn-sm" onclick="javascript: exibir('<?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getCodigo();?>
+');">
                             <span class="material-icons">search</span>
                         </button>
-                        <button type="button" title="Alterar" class="btn btn-warning btn-sm" onclick="javascript: alterar('{$objCurso->getCodigo()}')">
+                        <button type="button" title="Alterar" class="btn btn-warning btn-sm" onclick="javascript: alterar('<?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getCodigo();?>
+')">
                             <span class="material-icons">edit</span>
                         </button>
-                        <button type="button" title="excluir" class="btn btn-danger btn-sm" onclick="javascript: excluir('{$objCurso->getCodigo()}')">
+                        <button type="button" title="excluir" class="btn btn-danger btn-sm" onclick="javascript: excluir('<?php echo $_smarty_tpl->tpl_vars['objCurso']->value->getCodigo();?>
+')">
                             <span class="material-icons">delete_outline</span>
                         </button>
                     </td>
                 </tr>
-            {/foreach}
+            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </tbody>
     </table>
 </div>
+<?php }
+}

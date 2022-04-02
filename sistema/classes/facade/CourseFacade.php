@@ -1,116 +1,114 @@
 <?php
-include_once '../classes/dao/CursoDAO.php';
+include_once '../classes/dao/CourseDAO.php';
 include_once '../classes/factory/DAOFactory.php';
 
-class CursoFacade{
+class CourseFacade{
 
-    /* Listar */
-    public function listarCurso(){
+
+    public function listCourse(){
         
         DAOFactory::getDAOFactory();
         
-        $objCursoDAO  = new  CursoDAO();
+        $objCourseDAO  = new  CourseDAO();
 
         try {
             DAOFactory::$connection->pdo->beginTransaction();
 
-            $colectionCurso = $objCursoDAO->listarCurso();
+            $collectionCourse= $objCourseDAO->listCourse();
 
             DAOFactory::$connection->pdo->commit();
 			DAOFactory::$connection->closePDO();
         } catch (Exception $e) {
             DAOFactory::$connection->pdo->rollBack();
 			DAOFactory::$connection->closePDO();
-            throw new Exception($e->getMessage());
+            throw new Exception($e);
         }
 
-        return $colectionCurso;
+        return $collectionCourse;
  
     }
 
-    /* Incluir */
-    public function incluirCurso($objCurso){
+    public function includeCourse($objCourse){
         DAOFactory::getDAOFactory();
 
-        $objCursoDAO  = new  CursoDAO();
+        $objCourseDAO  = new  CourseDAO();
 
         try {
             DAOFactory::$connection->pdo->beginTransaction();
             
-            $objCursoDAO->incluirCurso($objCurso);
+            $objCourseDAO->includeCourse($objCourse);
 
             DAOFactory::$connection->pdo->commit();
 			DAOFactory::$connection->closePDO();
         } catch (Exception $e) {
             DAOFactory::$connection->pdo->rollBack();
 			DAOFactory::$connection->closePDO();
-            throw new Exception($e->getMessage());
+            throw new Exception($e);
         }
         return true;
     }
 
-    /* Obter */
-    public function obterDadosCurso($get){
+
+    public function getCourseInformation($code){
         DAOFactory::getDAOFactory();
 
-        $objCursoDAO  = new  CursoDAO();
+        $objCourseDAO  = new  CourseDAO();
 
         try {
             DAOFactory::$connection->pdo->beginTransaction();
 
-            $objCurso = $objCursoDAO->obterDadosCurso($get);
+            $objCourse = $objCourseDAO->getCourseInformation($code);
 
             DAOFactory::$connection->pdo->commit();
 			DAOFactory::$connection->closePDO();
         } catch (Exception $e) {
             DAOFactory::$connection->pdo->rollBack();
 			DAOFactory::$connection->closePDO();
-            throw new Exception($e->getMessage());
+            throw new Exception($e);
         }
-        return $objCurso;
+        return $objCourse;
     }
 
 
-    /* Alterar */
-    public function alterarCurso($objCurso){
+
+    public function changeCourse($objCourse){
         DAOFactory::getDAOFactory();
 
-        $objCursoDAO  = new  CursoDAO();
+        $objCourseDAO  = new  CourseDAO();
 
         try {
             DAOFactory::$connection->pdo->beginTransaction();
 
-            $objCursoDAO->alterarCurso($objCurso);
+            $objCourseDAO->changeCourse($objCourse);
 
             DAOFactory::$connection->pdo->commit();
 			DAOFactory::$connection->closePDO();
         } catch (Exception $e) {
             DAOFactory::$connection->pdo->rollBack();
 			DAOFactory::$connection->closePDO();
-            throw new Exception($e->getMessage());
+            throw new Exception($e);
         }
         return true;
     }
 
-    /* Exluir */
-    public function excluirCurso($objCurso){
+    /* Delete */
+    public function deleteCourse($id){
         DAOFactory::getDAOFactory();
 
-        $objCursoDAO  = new  CursoDAO();
+        $objCourseDAO  = new  CourseDAO();
 
         try {
             DAOFactory::$connection->pdo->beginTransaction();
 
-            $objCursoDAO->excluirCurso($objCurso);
+            $objCourseDAO->deleteCourse($id);
 
             DAOFactory::$connection->pdo->commit();
 			DAOFactory::$connection->closePDO();
         } catch (Exception $e) {
             DAOFactory::$connection->pdo->rollBack();
 			DAOFactory::$connection->closePDO();
-            throw new Exception($e->getMessage());
+            throw new Exception($e);
         }
-
         return true;
     }
 }

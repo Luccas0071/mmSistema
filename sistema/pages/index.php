@@ -1,7 +1,8 @@
 <?php
 include_once 'configs/Config.php';
-include_once '../classes/action/CursoAction.php';
-include_once '../classes/action/ColaboradorAction.php';
+include_once '../classes/action/CourseAction.php';
+include_once '../classes/action/UserAction.php';
+include_once '../classes/action/ModuleAction.php';
 include_once '../classes/action/MainAction.php';
 
 
@@ -9,73 +10,81 @@ include_once '../classes/action/MainAction.php';
 
     $do = $_GET['do'];
     $action = $_GET['action'];
-    //$acao = $_GET['acao'];
 
- 
-    /* 
-    Verifica qual action e qual 
-        função deve ser chamada
-        -- Colaborador
-     */
-    if($do == "colaborador"){
-        $colaboradorAction = new ColaboradorAction();
-        if($action == "inicio"){
-            $colaboradorAction->inicio();
-        }
-   
-        if($action == "editar"){
-            $colaboradorAction->editar($_GET);
-        }
-        
-        if($action == "incluir"){
-            $colaboradorAction->incluir($_POST);
-        }
-
-        if($action == "alterar"){
-            $colaboradorAction->alterar($_POST);
-        }
-
-        if($action == "excluir"){
-            $colaboradorAction->excluir($_POST);
-        } 
-
-        if($action == "listarItemColaborador"){
-            $colaboradorAction->listarItemColaborador($_GET);
-        }
-    } 
-    
-    /* 
-    Verifica qual action e qual 
-        função deve ser chamada
-        -- Curso
-     */
-    if($do == "curso"){
-        $cursoAction = new CursoAction();
-        if($action == "inicio"){
-            $cursoAction->inicio();
-        }
-   
-        if($action == "editar"){
-            $cursoAction->editar($_GET);
-        }
-        
-        if($action == "incluir"){
-           $cursoAction->incluir($_POST);
-        }
-
-        if($action == "alterar"){
-            $cursoAction->alterar($_POST);
-        }
-
-        if($action == "excluir"){
-            $cursoAction->excluir($_POST);
-        }
-    } 
-
-
-    if($do == "index"){
+    if($do == "index" || $do == ""){
         include('templates/home.php');
     } 
+
+    if($do == "user"){
+        $userAction = new UserAction();
+        if($action == "start"){
+            $userAction->start();
+        }
+   
+        if($action == "edit"){
+            $userAction->edit($_GET);
+        }
+        
+        if($action == "include"){
+            $userAction->include($_POST);
+        }
+
+        if($action == "change"){
+            $userAction->change($_POST);
+        }
+
+        if($action == "delete"){
+            $userAction->delete($_GET);
+        } 
+    } 
+    
+    if($do == "course"){
+        $courseAction = new CourseAction();
+        if($action == "start"){
+            $courseAction->start();
+        }
+   
+        if($action == "edit"){
+            $courseAction->edit($_GET);
+        }
+        
+        if($action == "include"){
+           $courseAction->include($_POST);
+        }
+
+        if($action == "change"){
+            $courseAction->change($_POST);
+        }
+
+        if($action == "delete"){
+            $courseAction->delete($_GET);
+        }
+    } 
+
+    if($do == "module"){
+        $moduleAction = new ModuleAction();
+        if($action == "start"){
+            $moduleAction->start($_GET);
+        }
+   
+        if($action == "edit"){
+            $moduleAction->edit($_GET);
+        }
+        
+        if($action == "include"){
+           $moduleAction->include($_POST);
+        }
+
+        if($action == "change"){
+            $moduleAction->change($_POST);
+        }
+
+        if($action == "delete"){
+            $moduleAction->delete($_GET);
+        }
+    } 
+
+    
 
 
     MainAction::footer();

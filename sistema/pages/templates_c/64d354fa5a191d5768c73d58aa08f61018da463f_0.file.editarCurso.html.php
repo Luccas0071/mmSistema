@@ -1,4 +1,28 @@
-<script language="JavaScript">
+<?php
+/* Smarty version 4.0.0, created on 2022-03-13 19:18:54
+  from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\curso\editarCurso.html' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.0.0',
+  'unifunc' => 'content_622e358e7b0161_65545452',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '64d354fa5a191d5768c73d58aa08f61018da463f' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\curso\\editarCurso.html',
+      1 => 1647195460,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_622e358e7b0161_65545452 (Smarty_Internal_Template $_smarty_tpl) {
+echo '<script'; ?>
+ language="JavaScript">
     jQuery.noConflict();
 
     function voltar() {
@@ -38,17 +62,18 @@
         window.location = "index.php?do=curso&action=inicio&sucesso";
     }
 
-</script>
+<?php echo '</script'; ?>
+>
 
 <div class="container">
         <div class="row">
             <div class="col-10">
                 <div class="padding-padrao">
-                    {if $objCursoForm->getAcao() == "A"}
+                    <?php if ($_smarty_tpl->tpl_vars['objCursoForm']->value->getAcao() == "A") {?>
                         <h1>Alterar Curso</h1>
-					{else} 
+					<?php } else { ?> 
                         <h1>Cadastro de Curso</h1>
-					{/if}
+					<?php }?>
                 </div>
             </div>
 
@@ -78,28 +103,33 @@
             </div>
             
         <form name="frmCurso" id="frmCurso" method="POST">
-            <input type="hidden" name="acao" 					id="acao" 					value="{$objCursoForm->getAcao()}">
-			<input type="hidden" name="codigoCurso" 			id="codigoCurso" 			value="{$objCursoForm->getCodigo()}">
+            <input type="hidden" name="acao" 					id="acao" 					value="<?php echo $_smarty_tpl->tpl_vars['objCursoForm']->value->getAcao();?>
+">
+			<input type="hidden" name="codigoCurso" 			id="codigoCurso" 			value="<?php echo $_smarty_tpl->tpl_vars['objCursoForm']->value->getCodigo();?>
+">
         
             <div class="row align-items-start">
                 <div class="col-4">
                     <div class="padding-padrao">
                         <label for="nome" title="Nome" class="text-ellipsis">Nome:</label>
-                        <input type="text" name="nome" id="nome" class="nome form-control form-control-sm" value="{$objCursoForm->getNome()}" >
+                        <input type="text" name="nome" id="nome" class="nome form-control form-control-sm" value="<?php echo $_smarty_tpl->tpl_vars['objCursoForm']->value->getNome();?>
+" >
                     </div>
                 </div>
 
                 <div class="col-4">
                     <div class="padding-padrao">
                         <label for="cargaHoraria" title="Carga Horaria" class="text-ellipsis">Carga horaria:</label>
-                        <input type="text" name="cargaHoraria" id="cargaHoraria" class="cargaHoraria form-control form-control-sm" value="{$objCursoForm->getCargaHoraria()}" >
+                        <input type="text" name="cargaHoraria" id="cargaHoraria" class="cargaHoraria form-control form-control-sm" value="<?php echo $_smarty_tpl->tpl_vars['objCursoForm']->value->getCargaHoraria();?>
+" >
                     </div>
                 </div>
 
                 <div class="col-4">
                     <div class="padding-padrao">
                         <label for="emissor" title="Emissor" class="text-ellipsis">Emissor:</label>
-                        <input type="text" name="emissor" id="emissor" class="emissor form-control form-control-sm" value="{$objCursoForm->getEmissor()}" >
+                        <input type="text" name="emissor" id="emissor" class="emissor form-control form-control-sm" value="<?php echo $_smarty_tpl->tpl_vars['objCursoForm']->value->getEmissor();?>
+" >
                     </div>
                 </div>
             
@@ -107,4 +137,5 @@
         </div>
     </form>
     <br>
-</div>
+</div><?php }
+}
