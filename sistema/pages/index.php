@@ -3,6 +3,7 @@ include_once 'configs/Config.php';
 include_once '../classes/action/CourseAction.php';
 include_once '../classes/action/UserAction.php';
 include_once '../classes/action/ModuleAction.php';
+include_once '../classes/action/ContentsAction.php';
 include_once '../classes/action/MainAction.php';
 
 
@@ -81,6 +82,29 @@ include_once '../classes/action/MainAction.php';
 
         if($action == "delete"){
             $moduleAction->delete($_GET);
+        }
+    } 
+
+    if($do == "contents"){
+        $contentsAction = new ContentsAction();
+        if($action == "start"){
+            $contentsAction->start($_GET);
+        }
+   
+        if($action == "edit"){
+            $contentsAction->edit($_GET);
+        }
+        
+        if($action == "include"){
+           $contentsAction->include($_POST);
+        }
+
+        if($action == "change"){
+            $contentsAction->change($_POST);
+        }
+
+        if($action == "delete"){
+            $contentsAction->delete($_GET);
         }
     } 
 

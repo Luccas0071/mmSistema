@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-04-02 15:18:48
+/* Smarty version 4.0.0, created on 2022-04-02 21:33:47
   from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\module\listModule.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_62484d38a6a7d1_11117900',
+  'unifunc' => 'content_6248a51bda4da2_01059292',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cef1ccb11fcc9dec7e5324b699e9e1e56cfd878a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\module\\listModule.html',
-      1 => 1648905525,
+      1 => 1648926665,
       2 => 'file',
     ),
   ),
@@ -20,29 +20,29 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62484d38a6a7d1_11117900 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6248a51bda4da2_01059292 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  language="JavaScript">
     jQuery.noConflict();
 
     function include() {
-        window.location = "index.php?do=course&action=edit&share=I";
+        window.location = "index.php?do=module&action=edit&share=I";
     }
 
-    function displayCourse(code) {
-        window.location = "index.php?do=course&action=edit&share=E&code="+code;
+    function displayModule(code) {
+        window.location = "index.php?do=module&action=edit&share=E&code="+code;
     }
 
-    function moduleCourse(code) {
-        window.location = "index.php?do=module&action=start&share=M&code="+code;
+    function contentModule(code) {
+        window.location = "index.php?do=contents&action=edit&share=I&code="+code;
     }
 
-    function changeCourse(code) {
-        window.location = "index.php?do=course&action=edit&share=A&code="+code;
+    function changeModule(code) {
+        window.location = "index.php?do=module&action=edit&share=A&code="+code;
     }
 
-    function deleteCourse(code) {
-        window.location = "index.php?do=course&action=edit&share=D&code="+code;
+    function deleteModule(code) {
+        window.location = "index.php?do=module&action=edit&share=D&code="+code;
     }
 
 <?php echo '</script'; ?>
@@ -50,25 +50,19 @@ echo '<script'; ?>
 
 <div class="container">
     <div class="row align-items-start">
-      <div class="col-11">
+      <div class="col-12">
           <div class="padding-padrao">
               <h1>Módulo</h1>
           </div>
       </div>
-      <div class="col-1">
-        <div class="padding-padrao">    
-            <button type="button" name="btn-incluir" id="btn-incluir" class="btn btn-primary" onclick="include();">
-                <i class="fas fa-plus"></i>Incluir
-            </button>
-        </div>
-      </div>
+
     </div>
     <hr>
     <div class="row align-items-start">
         <div class="col-4">
             <div class="padding-padrao">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Pesquisar Curso">
+                    <input type="text" class="form-control" placeholder="Pesquisar Módulo">
                     <button type="button" name="btn-incluir" id="btn-incluir" class="btn btn-primary" onclick="incluir();">
                         <i class="fas fa-search"></i> Pesquisar
                     </button>
@@ -106,19 +100,19 @@ $_smarty_tpl->tpl_vars['objModule']->do_else = false;
                     <td><?php echo $_smarty_tpl->tpl_vars['objModule']->value->getUpdateDate();?>
 </td>
                     <td>
-                        <button type="button" title="Exibir" class="btn btn-primary btn-sm" onclick="javascript: displayCourse('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
+                        <button type="button" title="Exibir" class="btn btn-primary btn-sm" onclick="javascript: displayModule('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
 ');">
                             <i class="fas fa-search"></i>
                         </button>
-                        <button type="button" title="Modulo" class="btn btn-info btn-sm" onclick="javascript: moduleCourse('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
+                        <button type="button" title="Conteudo" class="btn btn-info btn-sm" onclick="javascript: contentModule('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
 ');">
-                            <i class="fas fa-layer-group"></i>
+                            <i class="fas fa-align-center"></i>
                         </button>
-                        <button type="button" title="Alterar" class="btn btn-warning btn-sm" onclick="javascript: changeCourse('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
+                        <button type="button" title="Alterar" class="btn btn-warning btn-sm" onclick="javascript: changeModule('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
 ')">
                             <i class="fas fa-pen"></i>
                         </button>
-                        <button type="button" title="Excluir" class="btn btn-danger btn-sm" onclick="javascript: deleteCourse('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
+                        <button type="button" title="Excluir" class="btn btn-danger btn-sm" onclick="javascript: deleteModule('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
 ')">
                             <i class="fas fa-trash"></i>
                         </button>

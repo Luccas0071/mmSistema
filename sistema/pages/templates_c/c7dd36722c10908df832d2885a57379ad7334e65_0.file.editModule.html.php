@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-04-02 16:02:56
+/* Smarty version 4.0.0, created on 2022-04-02 17:16:47
   from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\module\editModule.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_6248579087cd78_14677899',
+  'unifunc' => 'content_624868df753967_53646413',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c7dd36722c10908df832d2885a57379ad7334e65' => 
     array (
       0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\module\\editModule.html',
-      1 => 1648908171,
+      1 => 1648912604,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:module/listModule.html' => 1,
   ),
 ),false)) {
-function content_6248579087cd78_14677899 (Smarty_Internal_Template $_smarty_tpl) {
+function content_624868df753967_53646413 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  language="JavaScript">
     jQuery.noConflict();
@@ -121,11 +121,11 @@ echo '<script'; ?>
             <div class="col-12">
                 <ul class="aba-escolha">
                     <li class="ativo" id="linkListModule" onclick="displayListModule();">
-                        <a href="#"><i class="fas fa-business-time"></i> Lista Módulo</a> 
+                        <a href="#"><i class="fas fa-layer-group"></i> Lista Módulo</a> 
                          
                     </li>
                     <li class="inativo" id="linkAddModule" onclick="displayAddModule();">
-                        <a href="#"><i class="fas fa-clipboard-list"></i> Adicionar Módulo</a> 
+                        <a href="#"><i class="fas fa-plus-circle"></i> Adicionar Módulo</a> 
                     </li>
                 </ul>
             </div>

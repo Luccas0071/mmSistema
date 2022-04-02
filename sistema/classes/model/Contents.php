@@ -6,7 +6,7 @@ class Contents{
     private $id;
     private $title;
     private $contents;
-    private $createDate;
+    private $creationDate;
     private $updateDate;
     private $objModule;
 
@@ -48,20 +48,6 @@ class Contents{
         return $this;
     }
 
-    
-    public function getCreateDate()
-    {
-        return $this->createDate;
-    }
-
-    public function setCreateDate($createDate)
-    {
-        $this->createDate = $createDate;
-
-        return $this;
-    }
-
-    
     public function getUpdateDate()
     {
         return $this->updateDate;
@@ -95,6 +81,19 @@ class Contents{
     public function setShare($share)
     {
         $this->share = $share;
+
+        return $this;
+    }
+ 
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
 
         return $this;
     }

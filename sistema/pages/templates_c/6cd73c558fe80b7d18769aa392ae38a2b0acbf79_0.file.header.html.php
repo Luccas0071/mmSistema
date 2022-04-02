@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-04-02 16:57:41
+/* Smarty version 4.0.0, created on 2022-04-02 17:11:33
   from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\include\header.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_62486465188706_14063088',
+  'unifunc' => 'content_624867a5304217_36980985',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6cd73c558fe80b7d18769aa392ae38a2b0acbf79' => 
     array (
       0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\include\\header.html',
-      1 => 1648911446,
+      1 => 1648912270,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62486465188706_14063088 (Smarty_Internal_Template $_smarty_tpl) {
+function content_624867a5304217_36980985 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -38,8 +38,6 @@ function content_62486465188706_14063088 (Smarty_Internal_Template $_smarty_tpl)
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/stylee.css">
         
-        
-
         <title>MM Tecnologia</title>
     </head>
 <body>
