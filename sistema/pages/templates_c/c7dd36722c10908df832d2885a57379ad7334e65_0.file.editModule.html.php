@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-04-02 17:16:47
+/* Smarty version 4.0.0, created on 2022-04-03 21:18:08
   from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\module\editModule.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_624868df753967_53646413',
+  'unifunc' => 'content_6249f2f01d1456_78995451',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c7dd36722c10908df832d2885a57379ad7334e65' => 
     array (
       0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\module\\editModule.html',
-      1 => 1648912604,
+      1 => 1649013445,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:module/listModule.html' => 1,
   ),
 ),false)) {
-function content_624868df753967_53646413 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6249f2f01d1456_78995451 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  language="JavaScript">
     jQuery.noConflict();
@@ -64,7 +64,6 @@ echo '<script'; ?>
     }
 
     function displayListModule() {
-        console.log('Entrou');
         jQuery("#listModule").slideDown();
         jQuery("#addModule").slideUp();
 
@@ -73,8 +72,6 @@ echo '<script'; ?>
     }
 
     function displayAddModule() {
-        console.log('saiu');
-        jQuery("#addModule").removeAttr("style");
         jQuery("#listModule").slideUp();
         jQuery("#addModule").slideDown();
 

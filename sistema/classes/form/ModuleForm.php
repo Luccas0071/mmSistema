@@ -145,15 +145,16 @@ class ModuleForm {
         return $objUser;
     }
 
-    public function transferModelForm($objUser){
+    public function transferModelForm($objModule){
 
-        $this->setShare($objUser->getShare());
-        $this->setId($objUser->getId());
-        $this->setName($objUser->getName());
-        $this->setEmail($objUser->getEmail());
-        $this->setStatus($objUser->getStatus());
-        $this->setCreationDate($objUser->getCreationDate());
-        $this->setUpdateDate($objUser->getUpdateDate());
+        $this->setShare($objModule->getShare());
+        $this->setId($objModule->getId());
+        $this->setTitle($objModule->getTitle());
+        $this->setDescription($objModule->getDescription());
+        $this->setCreationDate($objModule->getCreationDate());
+        $this->setUpdateDate($objModule->getUpdateDate());
+        $this->setCourse($objModule->getObjCourse()->getId());
+        $this->setUser($objModule->getObjUser()->getId());
 
         return $this;
     }

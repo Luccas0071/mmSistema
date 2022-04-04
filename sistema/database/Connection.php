@@ -6,6 +6,13 @@ class Connection{
 
     public function __construct(){
     
+        //SEVIDOR
+        // $endereco = 'ec2-54-160-109-68.compute-1.amazonaws.com';
+        // $banco = 'd3tdvj89gcjadu';
+        // $usuario = 'tsafitsdqovfqw';
+        // $senha = '01a9f022463f68bdcb9a70d214ddc401fb3ede8fc0f2b94423115e768b59211f';
+
+        //Local
         $endereco = 'localhost';
         $banco = 'mm_tecnologia';
         $usuario = 'postgres';

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-04-02 21:33:47
+/* Smarty version 4.0.0, created on 2022-04-03 21:27:06
   from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\module\listModule.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_6248a51bda4da2_01059292',
+  'unifunc' => 'content_6249f50a6768f4_71030321',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cef1ccb11fcc9dec7e5324b699e9e1e56cfd878a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\module\\listModule.html',
-      1 => 1648926665,
+      1 => 1649013822,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6248a51bda4da2_01059292 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6249f50a6768f4_71030321 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  language="JavaScript">
     jQuery.noConflict();
@@ -39,6 +39,8 @@ echo '<script'; ?>
 
     function changeModule(code) {
         window.location = "index.php?do=module&action=edit&share=A&code="+code;
+        jQuery("#listModule").slideUp();
+        jQuery("#addModule").slideDown();
     }
 
     function deleteModule(code) {
@@ -58,18 +60,6 @@ echo '<script'; ?>
 
     </div>
     <hr>
-    <div class="row align-items-start">
-        <div class="col-4">
-            <div class="padding-padrao">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Pesquisar Módulo">
-                    <button type="button" name="btn-incluir" id="btn-incluir" class="btn btn-primary" onclick="incluir();">
-                        <i class="fas fa-search"></i> Pesquisar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="container">
@@ -112,7 +102,8 @@ $_smarty_tpl->tpl_vars['objModule']->do_else = false;
 ')">
                             <i class="fas fa-pen"></i>
                         </button>
-                        <button type="button" title="Excluir" class="btn btn-danger btn-sm" onclick="javascript: deleteModule('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
+                        <button type="button" title="Exc
+                        luir" class="btn btn-danger btn-sm" onclick="javascript: deleteModule('<?php echo $_smarty_tpl->tpl_vars['objModule']->value->getId();?>
 ')">
                             <i class="fas fa-trash"></i>
                         </button>

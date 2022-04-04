@@ -89,19 +89,18 @@ class ModuleDAO extends DAOFactory{
 		return $collectionModule;
     }
 
-    public function getCourseInformation($code){
+    public function getModuleInformation($code){
 		
-
-		$sql = " SELECT  ";
+		$sql = " SELECT ";
+		$sql .= " 	mod_id, ";
+		$sql .= " 	mod_title, ";
+		$sql .= " 	mod_description, ";
+		$sql .= " 	mod_creation_date, ";
+		$sql .= " 	mod_update_date, ";
 		$sql .= " 	cou_id, ";
-		$sql .= " 	cou_unique_code, ";
-		$sql .= " 	cou_title, ";
-		$sql .= " 	cou_description, ";
-		$sql .= " 	cou_creation_date, ";
-		$sql .= " 	cou_update_date, ";
 		$sql .= " 	use_id ";
-		$sql .= " FROM public.tb_course ";
-		$sql .= " where cou_id = :code  ";
+		$sql .= " FROM public.tb_module  ";
+		$sql .= " where mod_id = :code  ";
 
 		$query = parent::$connection->pdo->prepare($sql);
 
@@ -110,23 +109,25 @@ class ModuleDAO extends DAOFactory{
 		if ($query->execute()) {
 			$rs = $query->fetch(PDO::FETCH_ASSOC);
 
-			$objCourse = new Course();
+			$objModule = new Module();
 
-			$objCourse->setId($rs['cou_id']);
-			$objCourse->setUniqueCode($rs['cou_unique_code']);
-			$objCourse->setTitle($rs['cou_title']);
-			$objCourse->setDescription($rs['cou_description']);
-			$objCourse->setCreationDate($rs['cou_creation_date']);
-			$objCourse->setUpdateDate($rs['cou_update_date']);
+			$objModule->setId($rs['mod_id']);
+			$objModule->setTitle($rs['mod_title']);
+			$objModule->setDescription($rs['mod_description']);
+			$objModule->setCreationDate($rs['mod_creation_date']);
+			$objModule->setUpdateDate($rs['mod_update_date']);
 
-			$objCourse->setObjUser(new User());
-			$objCourse->getObjUser()->setId($rs['use_id']);
+			$objModule->setObjCourse(new Course());
+			$objModule->getObjCourse()->setId($rs['cou_id']);
+
+			$objModule->setObjUser(new User());
+			$objModule->getObjUser()->setId($rs['use_id']);
 
 		} else {
 			$collectionErro = $query->errorInfo();
 			throw new Exception("CourseDAO->getCourseInformation " . $collectionErro[2]);
 		}
-		return $objCourse;
+		return $objModule;
 	}
 
     public function changeCourse($objCourse){

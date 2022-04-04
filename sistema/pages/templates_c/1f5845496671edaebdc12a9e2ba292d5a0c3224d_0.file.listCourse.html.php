@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.0.0, created on 2022-04-02 15:53:07
+/* Smarty version 4.0.0, created on 2022-04-03 21:25:44
   from 'C:\xampp\htdocs\mmSistema\sistema\pages\templates\course\listCourse.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.0.0',
-  'unifunc' => 'content_62485543edead4_68918471',
+  'unifunc' => 'content_6249f4b814bb40_99484107',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f5845496671edaebdc12a9e2ba292d5a0c3224d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\mmSistema\\sistema\\pages\\templates\\course\\listCourse.html',
-      1 => 1648907579,
+      1 => 1649013864,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62485543edead4_68918471 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6249f4b814bb40_99484107 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  language="JavaScript">
     jQuery.noConflict();
@@ -34,7 +34,7 @@ echo '<script'; ?>
     }
 
     function moduleCourse(code) {
-        window.location = "index.php?do=module&action=edit&share=I&code="+code;
+        window.location = "index.php?do=module&action=start&code="+code;
     }
 
     function changeCourse(code) {
@@ -64,18 +64,6 @@ echo '<script'; ?>
       </div>
     </div>
     <hr>
-    <div class="row align-items-start">
-        <div class="col-4">
-            <div class="padding-padrao">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Pesquisar Curso">
-                    <button type="button" name="btn-incluir" id="btn-incluir" class="btn btn-primary" onclick="incluir();">
-                        <i class="fas fa-search"></i> Pesquisar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="container">

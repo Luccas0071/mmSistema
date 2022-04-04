@@ -50,15 +50,15 @@ class ModuleFacade{
     }
 
 
-    public function getCourseInformation($code){
+    public function getModuleInformation($code){
         DAOFactory::getDAOFactory();
 
-        $objCourseDAO  = new  CourseDAO();
+        $objModuleDAO  = new  ModuleDAO();
 
         try {
             DAOFactory::$connection->pdo->beginTransaction();
 
-            $objCourse = $objCourseDAO->getCourseInformation($code);
+            $objModule = $objModuleDAO->getModuleInformation($code);
 
             DAOFactory::$connection->pdo->commit();
 			DAOFactory::$connection->closePDO();
@@ -67,7 +67,7 @@ class ModuleFacade{
 			DAOFactory::$connection->closePDO();
             throw new Exception($e);
         }
-        return $objCourse;
+        return $objModule;
     }
 
 

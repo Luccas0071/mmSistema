@@ -8,18 +8,26 @@ class ModuleAction{
     
     public function start($get){
 
-        $objModuleFacade   = new ModuleFacade();
+        $objModuleForm      = new ModuleForm();
+        $objModuleFacade    = new ModuleFacade();
+        $objUserFacade      = new UserFacade();
         $smarty             = new Smarty();
 
         $idCourse = $get['code'];
+        $share = $get['share'];
 
         try {
+            $collectionUser = $objUserFacade->listUser();
+		    $smarty->assign("collectionUser", $collectionUser);
+
             $collectionModule = $objModuleFacade->listModule($idCourse);
             $smarty->assign("collectionModule", $collectionModule);
             
         } catch (Exception $e) {
             throw new Exception("ModuleAction->star " . $e);
         }
+        $objModuleForm->setShare($share);
+        $smarty->assign("objModuleForm", $objModuleForm);
 
         $smarty->display('templates/module/editModule.html');
     }
@@ -36,6 +44,7 @@ class ModuleAction{
         
         if($share != "I"){
             $code = $get['code'];
+
             $objModule = $objModuleFacade->getModuleInformation($code);
             $objModuleForm->transferModelForm($objModule);
         }
@@ -45,7 +54,7 @@ class ModuleAction{
 		$smarty->assign("collectionUser", $collectionUser);
 
         $collectionModule = $objModuleFacade->listModule($idCourse);
-            $smarty->assign("collectionModule", $collectionModule);
+        $smarty->assign("collectionModule", $collectionModule);
 
         $smarty->assign("objModuleForm", $objModuleForm);
 
